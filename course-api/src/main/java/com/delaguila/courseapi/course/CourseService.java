@@ -15,8 +15,10 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public List<Course> getAllCourses(String id) {
-        return (List<Course>) this.courseRepository.findAll();
+    public List<Course> getAllCourses(String topicId) {
+        List<Course> courses = new ArrayList<>();
+        courseRepository.findByTopicId(topicId).forEach(courses::add);
+        return courses;
     }
 
     public Course getCourse(String id) {
